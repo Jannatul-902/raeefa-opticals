@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cart</title>
+
+    <!--font awesome cdn link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+
+    <!-- cutom css file link -->
+     <link rel="stylesheet" href="css/style.css">
+
+    <!-- custom js file link -->
+     <script src="js/script.js" defer></script>
+
+</head>
+<body>
+
+<!-- header section starts -->
+
+<header class="header">
+    <a href="home.html" class="logo">Raeefa Opticals</a>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="home.html"><i class="fas fa-home"></i>Home</a></li>
+            <li><a href="products.html"><i class="fas fa-box-open"></i>Products</a></li>
+            <li><a href="contact.html"><i class="fas fa-phone"></i>contact</a></li>
+            <li><a href="#"><i class="fas fa-user"></i>Account<i class="fas fa-plus"></i></a>
+                <ul>    
+                    <li><a href="login.html"><i class="fas fa-sign-in-alt"></i>Login</a></li>
+                    <li><a href="register.html"><i class="fas fa-user-plus"></i>Register</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="icons">
+        <div id="menu-btn" class="fas fa-bars"></div>
+        <div id="search-btn" class="fas fa-search"></div>
+        <a href="cart.html" class="fas fa-shopping-cart"></a>
+    </div>
+
+    <form action="" class="search-form">
+        <input type="search" name="" placeholder="search here..." id="search-box">
+        <label for="search-box" class="fas fa-search"></label>
+    </form>
+
+    
+</header>
+
+
+<!-- header section ends -->
+
+<!-- header section  -->
+
+<section class="heading">
+    <h1>Cart</h1>
+    <p> <a href="home.html">home</a> >> cart </p>
+</section>
+
+<!-- header section -->
+
+<!-- cart with checkout section starts -->
+<div class="container">
+    <div class="place-order">
+      <h2>Place order</h2>
+      <form>
+        <div class="input-group">
+          <input type="text" placeholder="Name" required />
+          <div class="phone">
+            <select>
+              <option>+880</option>
+              <option>+91</option>
+            </select>
+            <input type="tel" placeholder="Phone number" required />
+          </div>
+          <input type="email" placeholder="Email address (Optional)" />
+        </div>
+        <div class="input-group">
+          <input type="text" placeholder="House no, Road, Area, Street, directions etc*" required />
+          <select required>
+            <option>Select Area</option>
+            <option>Dhaka</option>
+            <option>Chittagong</option>
+          </select>
+        </div>
+        <textarea placeholder="Add your delivery instructions"></textarea>
+
+        <h4>Payment options</h4>
+        <label class="cod-option">
+          <input type="radio" name="payment" checked />
+          <span>Cash On Delivery</span>
+        </label>
+        <p class="note">Note: We'll contact you once the order is confirmed</p>
+
+        <div class="promo-code">
+          <input type="text" placeholder="Promo Code" />
+          <button type="button">Apply</button>
+        </div>
+
+        <div class="summary">
+          <p>Sub Total: <span>628 BDT</span></p>
+          <p>VAT (15%): <span>94.2 BDT</span></p>
+          <p>Delivery charge: <span>50 BDT</span></p>
+          <hr />
+          <p class="total">Total: <span>770 BDT</span></p>
+        </div>
+
+        <button type="submit" class="confirm-btn">Confirm order</button>
+      </form>
+    </div>
+
+    <div class="cart">
+            <h2>Cart</h2>
+            <div class="cart-container"></div>
+    </div>
+
+
+  </div>
+
+<!-- cart with checkout section ends -->
+ 
+
+<!-- footer section starts -->
+
+<section class="footer">
+    <div class="box-container">
+        <div class="box">
+            <h3>Extra Links</h3>
+            <a href="#"><i class="fas fa-user"></i> My Account</a> 
+            <a href="#"><i class="fas fa-box"></i> My Orders</a> 
+            <a href="#"><i class="fas fa-heart"></i> My Wishlist</a> 
+            <a href="#"><i class="fas fa-file-contract"></i> Terms of Use</a> 
+            <a href="#"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
+        </div>
+
+        <div class="box">
+            <h3>follow us</h3>
+            <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>           
+        </div>
+
+        <div class="box">
+            <h3>Contact Us</h3>
+            <a href="#"> <i class="fas fa-envelope"></i>raeefa-opticals@gmail.com</a>
+            <a href="#"> <i class="fas fa-phone-alt"></i>01710038080</a> 
+            <a href="#"> <i class="fas fa-map-marker-alt"></i>Kopotakkho Lions Hospital, Jashore</a> 
+        </div>
+    </div>
+
+    <div class="credit">© 2025 | created by <span>Raeefa Opticals</span> | all rights reserved</div>
+
+
+</section>
+
+<!-- footer section ends -->
+   
+<script>
+  const cartContainer = document.querySelector('.cart-container');
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+  cartContainer.innerHTML = '';
+
+  cartItems.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'cart-item';
+      div.innerHTML = `
+          <img src="${item.image}" alt="${item.name}" />
+          <div class="item-details">
+              <p>${item.name}</p>
+              <div class="quantity">
+                  <button>-</button>
+                  <input type="number" value="${item.quantity}" />
+                  <button>+</button>
+              </div>
+              <p>BDT ${(item.price * item.quantity).toFixed(2)}</p>
+          </div>
+      `;
+      cartContainer.appendChild(div);
+  });
+</script>
+
+
+</body>
+</html>
